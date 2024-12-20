@@ -73,8 +73,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(os.path.join(launch_dir, 'navigation_launch.py')),
         launch_arguments={'use_sim_time': use_sim_time,
                         'autostart': autostart,
-                        'params_file': params_file,
-                        'use_respawn': use_respawn}.items())
+                        'params_file': params_file}.items())
 
     bringup_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(launch_dir, 'bringup_launch.py')),
@@ -90,10 +89,8 @@ def generate_launch_description():
         respawn_arg,
         map_file_arg,
         params_file_arg,
-        map_launch,
-        # localization_launch,
         navigation_launch,
-        # bringup_launch
+        map_launch,
     ])
     
     
