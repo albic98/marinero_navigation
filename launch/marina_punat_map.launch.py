@@ -35,12 +35,12 @@ def generate_launch_description():
     )
 
     delayed_configure = TimerAction(
-        period=2.0,
+        period=1.0,
         actions=[configure_map_server]
     )
 
     delayed_activate = TimerAction(
-        period=4.0,
+        period=10.0,
         actions=[activate_map_server]
     )
 
