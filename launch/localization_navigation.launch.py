@@ -1,15 +1,11 @@
 import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import (DeclareLaunchArgument, GroupAction,
-                            IncludeLaunchDescription, SetEnvironmentVariable)
-from launch.conditions import IfCondition
+from launch.actions import (DeclareLaunchArgument, 
+                            TimerAction,IncludeLaunchDescription)
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import LaunchConfiguration, PythonExpression
+from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
-from launch_ros.actions import PushRosNamespace
-from launch_ros.descriptions import ParameterFile
-from nav2_common.launch import RewrittenYaml, ReplaceString
 
 def generate_launch_description():
 
@@ -31,8 +27,9 @@ def generate_launch_description():
 
     params_file_arg = DeclareLaunchArgument(
         'params_file',
-        # default_value=os.path.join(get_package_share_directory(pkg_name),'config','nav2_marinero_skid_steer_params.yaml'),
-        default_value=os.path.join(get_package_share_directory(pkg_name),'config','nav2_marinero_4wis4wid_drive_params.yaml'),
+        # default_value=os.path.join(get_package_share_directory(pkg_name),'config','dwb_nav2_marinero_skid_steer_params.yaml'),
+        default_value=os.path.join(get_package_share_directory(pkg_name),'config','dwb_nav2_marinero_4wis4wid_drive_params.yaml'),
+        # default_value=os.path.join(get_package_share_directory(pkg_name),'config','mppi_nav2_marinero_4wis4wid_drive_params.yaml'),
         description='Full path to the ROS2 parameters file to use for all launched nodes'
         )
 
