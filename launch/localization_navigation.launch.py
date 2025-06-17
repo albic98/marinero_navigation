@@ -28,8 +28,8 @@ def generate_launch_description():
     params_file_arg = DeclareLaunchArgument(
         'params_file',
         # default_value=os.path.join(get_package_share_directory(pkg_name),'config','dwb_nav2_marinero_skid_steer_params.yaml'),
-        default_value=os.path.join(get_package_share_directory(pkg_name),'config','dwb_nav2_marinero_4wis4wid_drive_params.yaml'),
-        # default_value=os.path.join(get_package_share_directory(pkg_name),'config','mppi_nav2_marinero_4wis4wid_drive_params.yaml'),
+        # default_value=os.path.join(get_package_share_directory(pkg_name),'config','dwb_nav2_marinero_4wis4wid_drive_params.yaml'),
+        default_value=os.path.join(get_package_share_directory(pkg_name),'config','mppi_nav2_marinero_4wis4wid_drive_params.yaml'),
         description='Full path to the ROS2 parameters file to use for all launched nodes'
         )
 
