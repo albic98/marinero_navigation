@@ -147,9 +147,9 @@ controller_server:
       vy_std: 0.2
       wz_std: 0.4
       vx_max: 0.5
-      vx_min: 0.0 # -0.35
-      vy_max: 0.0 # 0.5
-      vy_min: 0.0 # -0.5
+      vx_min: -0.25 # -0.35
+      vy_max: 0.5 # 0.5
+      vy_min: -0.25 # -0.5
       wz_max: 1.15
       wz_min: -1.15
       ax_max: 2.5
@@ -201,7 +201,7 @@ controller_server:
         collision_cost: 10000.0
         collision_margin_distance: 0.1
         near_goal_distance: 0.5
-        inflation_radius: 0.55 # (only in Humble)
+        inflation_radius: 0.5 # (only in Humble)
         cost_scaling_factor: 10.0 # (only in Humble)
       CostCritic:
         enabled: true
@@ -263,7 +263,7 @@ local_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.0
-        inflation_radius: 0.55
+        inflation_radius: 0.5
       voxel_layer:
         plugin: "nav2_costmap_2d::VoxelLayer"
         enabled: True
@@ -343,7 +343,7 @@ global_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.0
-        inflation_radius: 0.55
+        inflation_radius: 0.5
       always_send_full_costmap: True
 
 map_server:
@@ -428,8 +428,8 @@ velocity_smoother:
     smoothing_frequency: 20.0
     scale_velocities: False
     feedback: "OPEN_LOOP"
-    max_velocity: [0.5, 0.25, 1.15]
-    min_velocity: [-0.5, -0.25, -1.15]
+    max_velocity: [0.5, 0.5, 1.15]
+    min_velocity: [-0.25, -0.25, -1.15]
     max_accel: [2.5, 2.5, 3.2]
     max_decel: [-2.5, -2.5, -3.2]
     odom_topic: "marinero/odom"
