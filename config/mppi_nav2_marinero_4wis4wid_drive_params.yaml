@@ -37,7 +37,7 @@ amcl:
     z_max: 0.05
     z_rand: 0.5
     z_short: 0.05
-    scan_topic: "lidar_3D/rear_scan lidar_3D/front_scan" # "front_scan rear_scan"
+    scan_topic: "front_scan rear_scan" # "lidar_3D/rear_scan lidar_3D/front_scan"
 
 bt_navigator:
   ros__parameters:
@@ -146,7 +146,7 @@ controller_server:
       vx_std: 0.2
       vy_std: 0.2
       wz_std: 0.4
-      vx_max: 0.5
+      vx_max: 1.0
       vx_min: -0.25 # -0.35
       vy_max: 0.5 # 0.5
       vy_min: -0.25 # -0.5
@@ -468,7 +468,7 @@ velocity_smoother:
     smoothing_frequency: 20.0
     scale_velocities: False
     feedback: "OPEN_LOOP"
-    max_velocity: [0.5, 0.5, 1.15]
+    max_velocity: [1.0, 0.5, 1.15]
     min_velocity: [-0.25, -0.25, -1.15]
     max_accel: [2.5, 2.5, 3.2]
     max_decel: [-2.5, -2.5, -3.2]
