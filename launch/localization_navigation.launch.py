@@ -79,6 +79,10 @@ def generate_launch_description():
                         'params_file': params_file,
                         'use_respawn': use_respawn}.items())
 
+    mapviz_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(os.path.join(get_package_share_directory('mapviz'),'launch','mapviz.launch.py')),
+        launch_arguments={'use_sim_time': use_sim_time}.items())    
+
     return LaunchDescription([
         sim_time_arg,
         autostart_arg,
@@ -87,4 +91,5 @@ def generate_launch_description():
         params_file_arg,
         map_launch,
         navigation_launch,
+        mapviz_launch,
     ])

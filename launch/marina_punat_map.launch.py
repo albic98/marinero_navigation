@@ -5,7 +5,7 @@ from launch import LaunchDescription
 from launch_ros.actions import Node
 from launch.event_handlers import OnProcessExit
 from ament_index_python.packages import get_package_share_directory
-from launch.actions import TimerAction, ExecuteProcess, RegisterEventHandler
+from launch.actions import ExecuteProcess, RegisterEventHandler
 
 def generate_launch_description():
 
@@ -19,29 +19,30 @@ def generate_launch_description():
         parameters=[{'yaml_filename': yaml_file}],
     )
 
-    configure_map_server = ExecuteProcess(
-        cmd=['ros2', 'lifecycle', 'set', '/map_server', 'configure'],
-        output='screen'
+    lifecycle_manager = Node(
+        package='nav2_lifecycle_manager',
+        executable='lifecycle_manager',
+        name='lifecycle_manager_map',
+        output='screen',
+        parameters=[{
+            'autostart': True,
+            'node_names': ['map_server']
+        }]
     )
 
-    activate_map_server = ExecuteProcess(
-        cmd=['ros2', 'lifecycle', 'set', '/map_server', 'activate'],
-        output='screen'
-    )
+    # configure_map_server = ExecuteProcess(
+    #     cmd=['ros2', 'lifecycle', 'set', '/map_server', 'configure'],
+    #     output='screen'
+    # )
+
+    # activate_map_server = ExecuteProcess(
+    #     cmd=['ros2', 'lifecycle', 'set', '/map_server', 'activate'],
+    #     output='screen'
+    # )
 
     shutdown_map_server = ExecuteProcess(
         cmd=['ros2', 'lifecycle', 'set', '/map_server', 'shutdown'],
         output='screen'
-    )
-
-    delayed_configure = TimerAction(
-        period=1.0,
-        actions=[configure_map_server]
-    )
-
-    delayed_activate = TimerAction(
-        period=10.0,
-        actions=[activate_map_server]
     )
 
     on_shutdown_handler = RegisterEventHandler(
@@ -53,7 +54,6 @@ def generate_launch_description():
 
     return LaunchDescription([
         map_server_node,
-        delayed_configure,
-        delayed_activate,
+        lifecycle_manager,
         on_shutdown_handler
     ])

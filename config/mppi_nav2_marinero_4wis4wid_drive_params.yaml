@@ -134,8 +134,8 @@ controller_server:
     general_goal_checker:
       stateful: True
       plugin: "nav2_controller::SimpleGoalChecker"
-      xy_goal_tolerance: 0.15
-      yaw_goal_tolerance: 0.25
+      xy_goal_tolerance: 0.20
+      yaw_goal_tolerance: 0.15
     # MPPI parameters
     FollowPath:
       plugin: "nav2_mppi_controller::MPPIController"
@@ -456,11 +456,20 @@ waypoint_follower:
     use_sim_time: True
     loop_rate: 20
     stop_on_failure: false
-    waypoint_task_executor_plugin: "wait_at_waypoint"
-    wait_at_waypoint:
-      plugin: "nav2_waypoint_follower::WaitAtWaypoint"
+    use_final_pose: false
+    waypoint_task_executor_plugin: "photo_at_waypoint"
+    photo_at_waypoint:
+      plugin: "nav2_waypoint_follower::PhotoAtWaypoint"
       enabled: True
-      waypoint_pause_duration: 200
+      waypoint_pause_duration: 2.5
+      image_topic: "/right_depth_camera/image_raw"
+      save_dir: "/home/albert/marinero_ws/waypoint_images"
+
+    # waypoint_task_executor_plugin: "wait_at_waypoint"
+    # wait_at_waypoint:
+    #   plugin: "nav2_waypoint_follower::WaitAtWaypoint"
+    #   enabled: True
+    #   waypoint_pause_duration: 200
 
 velocity_smoother:
   ros__parameters:
