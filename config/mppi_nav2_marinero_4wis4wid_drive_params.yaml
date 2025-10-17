@@ -457,13 +457,20 @@ waypoint_follower:
     loop_rate: 20
     stop_on_failure: false
     use_final_pose: false
-    waypoint_task_executor_plugin: "photo_at_waypoint"
-    photo_at_waypoint:
-      plugin: "nav2_waypoint_follower::PhotoAtWaypoint"
-      enabled: True
-      waypoint_pause_duration: 2.5
-      image_topic: "/right_depth_camera/image_raw"
-      save_dir: "/home/albert/marinero_ws/waypoint_images"
+    waypoint_task_executor_plugin: "input_at_waypoint"
+    input_at_waypoint:
+      plugin: "nav2_waypoint_follower::InputAtWaypoint"
+      enabled: true
+      timeout: 30.0
+      input_topic: "/input_at_waypoint/next_goal"
+
+    # waypoint_task_executor_plugin: "photo_at_waypoint"
+    # photo_at_waypoint:
+    #   plugin: "nav2_waypoint_follower::PhotoAtWaypoint"
+    #   enabled: True
+    #   waypoint_pause_duration: 2.5
+    #   image_topic: "/right_depth_camera/image_raw"
+    #   save_dir: "/home/albert/marinero_ws/waypoint_images"
 
     # waypoint_task_executor_plugin: "wait_at_waypoint"
     # wait_at_waypoint:
