@@ -79,6 +79,10 @@ def generate_launch_description():
                         'params_file': params_file,
                         'use_respawn': use_respawn}.items())
 
+    robot_localization_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(os.path.join(get_package_share_directory('marinero_navigation'),'launch','merged_ekf_navsat.launch.py')),
+        launch_arguments={'use_sim_time': use_sim_time}.items())    
+
     mapviz_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(get_package_share_directory('mapviz'),'launch','mapviz.launch.py')),
         launch_arguments={'use_sim_time': use_sim_time}.items())    
@@ -91,5 +95,6 @@ def generate_launch_description():
         params_file_arg,
         map_launch,
         navigation_launch,
+        robot_localization_launch,
         mapviz_launch,
     ])
