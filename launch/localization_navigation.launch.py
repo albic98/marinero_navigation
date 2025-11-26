@@ -31,8 +31,8 @@ def generate_launch_description():
 
     params_file_arg = DeclareLaunchArgument(
         'params_file',
-        default_value=os.path.join(get_package_share_directory(pkg_name),'config','nav2_marinero_skid_steer_params.yaml'),
-        # default_value=os.path.join(get_package_share_directory(pkg_name),'config','nav2_marinero_4wis4wid_drive_params.yaml'),
+        # default_value=os.path.join(get_package_share_directory(pkg_name),'config','nav2_marinero_skid_steer_params.yaml'),
+        default_value=os.path.join(get_package_share_directory(pkg_name),'config','nav2_marinero_4wis4wid_drive_params.yaml'),
         description='Full path to the ROS2 parameters file to use for all launched nodes'
         )
 
@@ -82,6 +82,12 @@ def generate_launch_description():
                         'params_file': params_file,
                         'use_respawn': use_respawn}.items())
 
+    # launch_mapviz = IncludeLaunchDescription(
+    #     PythonLaunchDescriptionSource(
+    #             os.path.join(get_package_share_directory('mapviz'),'launch','mapviz.launch.py')
+    #     )
+    # )
+
     return LaunchDescription([
         sim_time_arg,
         autostart_arg,
@@ -90,4 +96,5 @@ def generate_launch_description():
         params_file_arg,
         map_launch,
         navigation_launch,
+        # launch_mapviz
     ])
